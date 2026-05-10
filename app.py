@@ -39,8 +39,10 @@ if not st.session_state['login']:
         if id in id_pw.keys() and id_pw[id] == pw:
             st.session_state['login'] = True
             st.session_state['user_id'] = id
+            print("[터미널 로그]: 로그인 성공")
             st.rerun()
         else:
+            print("[터미널 로그]: 로그인 실패")
             st.error('아이디와 비밀번호를 확인해주세요.')
 else:
     # ===================================
@@ -51,6 +53,7 @@ else:
     col1, col2 = st.columns([8,1])
     with col2:
         if st.button('logout'):
+            print("[터미널 로그]: 로그아웃")
             st.session_state['login'] = False
             st.session_state['user_id'] = None
             reset_quiz()
@@ -62,10 +65,12 @@ else:
             col1, col2 = st.columns(2)
             with col1:
                 if st.button('기본 문제'):
+                    print("[터미널 로그]: 기본문제 선택")
                     st.session_state['difficulty'] = 'basic'
                     st.rerun()
             with col2:
                 if st.button('심화 문제'):
+                    print("[터미널 로그]: 심화문제 선택")
                     st.session_state['difficulty'] = 'hard'
                     st.rerun()
 

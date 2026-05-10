@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 from quiz import *
+from datetime import datetime
 
 st.set_page_config(
     page_title="KW-oss-quizApp",
@@ -39,10 +40,10 @@ if not st.session_state['login']:
         if id in id_pw.keys() and id_pw[id] == pw:
             st.session_state['login'] = True
             st.session_state['user_id'] = id
-            print("[터미널 로그]: 로그인 성공")
+            print(f"[터미널 로그]: 로그인 성공 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             st.rerun()
         else:
-            print("[터미널 로그]: 로그인 실패")
+            print(f"[터미널 로그]: 로그인 실패 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             st.error('아이디와 비밀번호를 확인해주세요.')
 else:
     # ===================================
@@ -53,7 +54,7 @@ else:
     col1, col2 = st.columns([8,1])
     with col2:
         if st.button('logout'):
-            print("[터미널 로그]: 로그아웃")
+            print(f"[터미널 로그]: 로그아웃 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             st.session_state['login'] = False
             st.session_state['user_id'] = None
             reset_quiz()
@@ -65,12 +66,12 @@ else:
             col1, col2 = st.columns(2)
             with col1:
                 if st.button('기본 문제'):
-                    print("[터미널 로그]: 기본문제 선택")
+                    print(f"[터미널 로그]: 기본문제 선택 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
                     st.session_state['difficulty'] = 'basic'
                     st.rerun()
             with col2:
                 if st.button('심화 문제'):
-                    print("[터미널 로그]: 심화문제 선택")
+                    print(f"[터미널 로그]: 심화문제 선택 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
                     st.session_state['difficulty'] = 'hard'
                     st.rerun()
 
